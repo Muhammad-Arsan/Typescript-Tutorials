@@ -1,44 +1,46 @@
 
-// interfaces
-interface IsPerson {
-     name: string;
-     age: number;
-     speak(a: string): void;
-     spend(a: number): number
-}
-
-const me: IsPerson = {               // me has to match the structure of IsPerson interface
-     name: 'arsan',
-     age: 23,
-     speak(text: string): void {
-          console.log(text)
-     },
-     spend(amount: number): number {
-          console.log("I spent ", amount)
-          return amount;
-     }
-}
-console.log(me)
-
-const greetPerson = (person: IsPerson) => {
-     console.log("hello", person.name)
-}
-greetPerson(me)
-
-
 import { Invoice } from './classes/Invoice.js'
-const invOne = new Invoice('aaa', 'work on web', 300)
-const invTwo = new Invoice('bbb', 'work on mobile', 200)
+import { Payment } from './classes/Payment.js';
+import { HasFormatter } from './interfaces/HasFormatter.js';
 
-console.log(invOne)
-console.log(invTwo)
+// let docOne: HasFormatter;
+// let docTwo: HasFormatter;
 
-let invoices: Invoice[] = []             // this invoices only accept type of Invoice values in array 
-// invoices.push('ss')                    // Not allowed string type cant push to type Invoice
-invoices.push(invOne, invTwo)
-// console.log(invoices)
+// docOne = new Invoice('babar', 'batsman', 300)
+// docTwo = new Payment('shaheen', 'bowler', 100)
 
-invoices.forEach((inv) => {
-     // inv.client = "ddd"           // cant assign client new value because its a readonly property
-     console.log(inv.client, inv.amount, inv.format())
+// let docs: HasFormatter[] = []
+// docs.push(docOne)
+// docs.push(docTwo)
+// docs.push('fakhar', 'batsman', 20)               // does'nt wotk because it not has a type of HasFormatter
+// console.log("docs==================>", docs)
+
+// const invOne = new Invoice('aaa', 'work on web', 300)
+// const invTwo = new Invoice('bbb', 'work on mobile', 200)
+
+// console.log(invOne)
+// console.log(invTwo)
+
+
+const form = document.querySelector('.new-item-form') as HTMLFormElement;
+// console.log(form.children);
+
+// inputs
+const type = document.querySelector('#type') as HTMLInputElement;
+const tofrom = document.querySelector('#tofrom') as HTMLInputElement;
+const details = document.querySelector('#details') as HTMLInputElement;
+const amount = document.querySelector('#amount') as HTMLInputElement;
+
+form.addEventListener('submit', (e: Event) => {
+     e.preventDefault();
+     let doc: HasFormatter;
+     if (type.value === 'invoice') {
+          doc = new Invoice(tofrom.value, details.value, amount.valueAsNumber)
+     }
+     else {
+          doc = new Payment(tofrom.value, details.value, amount.valueAsNumber)
+     }
+     console.log(
+          doc
+     );
 })
