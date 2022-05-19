@@ -1,28 +1,33 @@
-// const anchor = document.querySelector('a');
-// console.log(anchor.href)                   //  it showing error because it may be null
+// classes
 
-const anchor = document.querySelector('a')
+class Invoice {
+     readonly client: string;       // only read the value inside or outside the class
+     private details: string;     // can be access only inside class and not access outside class
+     public amount: number;      // by default behaviur of a property is public can be access inside or outside class
 
-if (anchor) {                       // So, it checks for (a) is not null or (a) is exist than log its property 
-     console.log(anchor.href)
+     constructor(c: string, d: string, a: number) {
+          this.client = c;
+          this.details = d;
+          this.amount = a;
+     }
+     format() {
+          // this.client = 'eee'  // cant assign client new value because its a readonly property inside and outside class
+          return `${this.client} owes $${this.amount} for ${this.details}`
+     }
 }
 
-const anc = document.querySelector('a')!;    // thats mean (a) is not null 
-console.log(anc.href)
+const invOne = new Invoice('aaa', 'work on web', 300)
+const invTwo = new Invoice('bbb', 'work on mobile', 200)
 
+console.log(invOne)
+console.log(invTwo)
 
-const form = document.querySelector('.new-item-form') as HTMLFormElement   // thats mean form exist and its type is HTMLFormElement
-// console.log(form.children)
+let invoices: Invoice[] = []             // this invoices only accept type of Invoice values in array 
+// invoices.push('ss')                    // Not allowed string type cant push to type Invoice
+invoices.push(invOne, invTwo)
+// console.log(invoices)
 
-// inputs
-const type = document.querySelector('#type') as HTMLSelectElement;
-const tofrom = document.querySelector('#tofrom') as HTMLInputElement;
-const details = document.querySelector('#details') as HTMLInputElement;
-const amount = document.querySelector('#amount') as HTMLInputElement;
-
-form.addEventListener('submit', (e: Event) => {
-     e.preventDefault();
-
-     console.log(type.value, tofrom.value, details.value, amount.valueAsNumber)
+invoices.forEach((inv) => {
+     // inv.client = "ddd"           // cant assign client new value because its a readonly property
+     console.log(inv.client, inv.amount, inv.format())
 })
-
