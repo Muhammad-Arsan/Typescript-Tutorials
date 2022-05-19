@@ -1,10 +1,23 @@
 "use strict";
-const logDetails = (uid, item) => {
-    console.log(`${item} has a uid of ${uid}`);
+// let greet: Function
+// example 1 
+let greet; // here is function return type is void so in greet function declaration it doesnt return anything so its return tuype is void
+greet = (name, greetings) => {
+    console.log(`${name} says ${greetings}`);
 };
-const greet = (user) => {
-    console.log(`${user.name} says hello`); //So therefor we are using Type Aliases
+// example 2 
+let calculate; // here is function return type is number so it must return number type of value
+calculate = (numOne, numTwo, action) => {
+    if (action === 'add') {
+        return numOne + numTwo;
+    }
+    else {
+        return numOne - numTwo;
+    }
 };
-const greetAgain = (user) => {
-    console.log(`${user.name} says hello`);
+calculate(3, 4, 'fdsf');
+//example 3
+let logDetails;
+logDetails = (ninja) => {
+    console.log(`${ninja.name} is ${ninja.age} years old`);
 };

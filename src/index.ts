@@ -1,16 +1,34 @@
-type StringOrNum = string | number;     // this is called type alises
-type objWithName = { name: string, uid: StringOrNum }
+// let greet: Function
 
+// example 1 
 
-const logDetails = (uid: StringOrNum, item: string) => {     // here we use uid which have type of string or number
-     console.log(`${item} has a uid of ${uid}`)
+let greet: (a: string, b: string) => void             // here is function return type is void so in greet function declaration it doesnt return anything so its return tuype is void
+
+greet = (name: string, greetings: string) => {
+     console.log(`${name} says ${greetings}`)
 }
 
-const greet = (user: objWithName) => {  // here we use uid which have type of string or number soo these are repeated with function logDetails
-     console.log(`${user.name} says hello`)                        //So therefor we are using Type Aliases
-}
+// example 2 
 
-const greetAgain = (user: objWithName) => {
-     console.log(`${user.name} says hello`)
+let calculate: (a: number, b: number, c: string) => number;    // here is function return type is number so it must return number type of value
+
+calculate = (numOne: number, numTwo: number, action: string) => {
+     if (action === 'add') {
+          return numOne + numTwo;
+     } else {
+          return numOne - numTwo
+     }
+}
+calculate(3, 4, 'fdsf');
+
+
+//example 3
+
+let logDetails: (obj: { name: string, age: number }) => void
+
+type person = { name: string, age: number } // type aliases
+
+logDetails = (ninja: person) => {
+     console.log(`${ninja.name} is ${ninja.age} years old`)
 
 }
