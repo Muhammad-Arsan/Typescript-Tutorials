@@ -1,4 +1,31 @@
 
+// interfaces
+interface IsPerson {
+     name: string;
+     age: number;
+     speak(a: string): void;
+     spend(a: number): number
+}
+
+const me: IsPerson = {               // me has to match the structure of IsPerson interface
+     name: 'arsan',
+     age: 23,
+     speak(text: string): void {
+          console.log(text)
+     },
+     spend(amount: number): number {
+          console.log("I spent ", amount)
+          return amount;
+     }
+}
+console.log(me)
+
+const greetPerson = (person: IsPerson) => {
+     console.log("hello", person.name)
+}
+greetPerson(me)
+
+
 import { Invoice } from './classes/Invoice.js'
 const invOne = new Invoice('aaa', 'work on web', 300)
 const invTwo = new Invoice('bbb', 'work on mobile', 200)
