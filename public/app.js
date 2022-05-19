@@ -1,16 +1,4 @@
-"use strict";
-// classes
-class Invoice {
-    constructor(c, d, a) {
-        this.client = c;
-        this.details = d;
-        this.amount = a;
-    }
-    format() {
-        // this.client = 'eee'  // cant assign client new value because its a readonly property inside and outside class
-        return `${this.client} owes $${this.amount} for ${this.details}`;
-    }
-}
+import { Invoice } from './classes/Invoice.js';
 const invOne = new Invoice('aaa', 'work on web', 300);
 const invTwo = new Invoice('bbb', 'work on mobile', 200);
 console.log(invOne);
