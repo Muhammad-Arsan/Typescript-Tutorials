@@ -1,44 +1,26 @@
 
 
-// Genenrics              // allows us to write reusable code 
+// ENUMS                                                     // where we set  variables to be predefined constant
 
 
-const addUID = <T extends { name: string }>(obj: T) => {
-     let uid = Math.floor(Math.random() * 100)
-     return { ...obj, uid }
-}
-
-let doc = addUID({
-     name: 'ere', age: 23
-})
-// let doc1 = addUID('helllo')
-// console.log(doc)
-console.log(doc.age)
-let doc2 = addUID({ name: "23" })
-
-
-// with interfaces
+enum ResourceType { BOOK, PHONE, LAPTOP, PERSON, BALL }
 
 interface Resource<T> {
      uid: number;
-     resourceName: string;
+     resourceType: ResourceType,
      data: T
 }
 
-// example
-const doc3: Resource<object> = {                // resource (T) has an type of object
-     uid: 1,
-     resourceName: 'person',
-     data: { name: "sdfs" }                    // So here we can't pass string or number or array value instead of object   
+const docOne: Resource<object> = {
+     uid: 22,
+     resourceType: ResourceType.PHONE,
+     data: { name: 'bilal' }
 }
 
-//another example
-
-const doc4: Resource<string[]> = {
-     resourceName: 'babar',
-     uid: 4,
-     data: ['rew', 'df']
+const docTwo: Resource<string[]> = {
+     uid: 33,
+     resourceType: ResourceType.PERSON,
+     data: ['ahmed', 'ali', 'arsan']
 }
 
-
-console.log(doc3, doc4)
+console.log(docOne, docTwo)

@@ -1,26 +1,21 @@
 "use strict";
-// Genenrics              // allows us to write reusable code 
-const addUID = (obj) => {
-    let uid = Math.floor(Math.random() * 100);
-    return Object.assign(Object.assign({}, obj), { uid });
+// ENUMS                                                     // where we set  variables to be predefined constant
+var ResourceType;
+(function (ResourceType) {
+    ResourceType[ResourceType["BOOK"] = 0] = "BOOK";
+    ResourceType[ResourceType["PHONE"] = 1] = "PHONE";
+    ResourceType[ResourceType["LAPTOP"] = 2] = "LAPTOP";
+    ResourceType[ResourceType["PERSON"] = 3] = "PERSON";
+    ResourceType[ResourceType["BALL"] = 4] = "BALL";
+})(ResourceType || (ResourceType = {}));
+const docOne = {
+    uid: 22,
+    resourceType: ResourceType.PHONE,
+    data: { name: 'bilal' }
 };
-let doc = addUID({
-    name: 'ere', age: 23
-});
-// let doc1 = addUID('helllo')
-// console.log(doc)
-console.log(doc.age);
-let doc2 = addUID({ name: "23" });
-// example
-const doc3 = {
-    uid: 1,
-    resourceName: 'person',
-    data: { name: "sdfs" } // So here we can't pass string or number or array value instead of object   
+const docTwo = {
+    uid: 33,
+    resourceType: ResourceType.PERSON,
+    data: ['ahmed', 'ali', 'arsan']
 };
-//another example
-const doc4 = {
-    resourceName: 'babar',
-    uid: 4,
-    data: ['rew', 'df']
-};
-console.log(doc3, doc4);
+console.log(docOne, docTwo);
