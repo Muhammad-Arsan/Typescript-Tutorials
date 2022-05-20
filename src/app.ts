@@ -1,32 +1,44 @@
 
-import { Invoice } from './classes/Invoice.js'
-import { ListTemplate } from './classes/ListTemplate.js';
-import { Payment } from './classes/Payment.js';
-import { HasFormatter } from './interfaces/HasFormatter.js';
 
-const form = document.querySelector('.new-item-form') as HTMLFormElement;
-// console.log(form.children);
-
-// inputs
-const type = document.querySelector('#type') as HTMLInputElement;
-const tofrom = document.querySelector('#tofrom') as HTMLInputElement;
-const details = document.querySelector('#details') as HTMLInputElement;
-const amount = document.querySelector('#amount') as HTMLInputElement;
+// Genenrics              // allows us to write reusable code 
 
 
-// list template instance
+const addUID = <T extends { name: string }>(obj: T) => {
+     let uid = Math.floor(Math.random() * 100)
+     return { ...obj, uid }
+}
 
-const ul = document.querySelector('ul')!;
-const list = new ListTemplate(ul)
-
-form.addEventListener('submit', (e: Event) => {
-     e.preventDefault();
-     let doc: HasFormatter;
-     if (type.value === 'invoice') {
-          doc = new Invoice(tofrom.value, details.value, amount.valueAsNumber)
-     }
-     else {
-          doc = new Payment(tofrom.value, details.value, amount.valueAsNumber)
-     }
-     list.render(doc, type.value, 'start')
+let doc = addUID({
+     name: 'ere', age: 23
 })
+// let doc1 = addUID('helllo')
+// console.log(doc)
+console.log(doc.age)
+let doc2 = addUID({ name: "23" })
+
+
+// with interfaces
+
+interface Resource<T> {
+     uid: number;
+     resourceName: string;
+     data: T
+}
+
+// example
+const doc3: Resource<object> = {                // resource (T) has an type of object
+     uid: 1,
+     resourceName: 'person',
+     data: { name: "sdfs" }                    // So here we can't pass string or number or array value instead of object   
+}
+
+//another example
+
+const doc4: Resource<string[]> = {
+     resourceName: 'babar',
+     uid: 4,
+     data: ['rew', 'df']
+}
+
+
+console.log(doc3, doc4)
